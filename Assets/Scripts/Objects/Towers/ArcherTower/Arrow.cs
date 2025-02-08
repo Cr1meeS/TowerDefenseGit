@@ -5,16 +5,16 @@ public class Arrow : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _damage;
 
-    private Vector3 velocity;
-
     public Transform Target;
 
     private void Update()
     {
         if (Target != null)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, Target.position, ref velocity, 0f, _speed * 1000f);
+            transform.LookAt(Target);
+            transform.position = Vector3.MoveTowards(transform.position, Target.position, _speed * Time.deltaTime);
         }
+        else Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider collider)

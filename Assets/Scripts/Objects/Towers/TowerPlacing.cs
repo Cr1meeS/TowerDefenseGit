@@ -66,6 +66,7 @@ public class TowerPlacing : MonoBehaviour
                     transform.localPosition = new Vector3(0f, 1.2f, 0f);
                     _meshRender.material = _defaultMaterial;
                     _placed = true;
+                    transform.GetComponent<Tower>().enabled = true;
                 }
                 else Destroy(_gameObject);
             }
