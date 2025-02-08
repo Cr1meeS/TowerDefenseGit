@@ -70,7 +70,7 @@ public abstract class Tower : MonoBehaviour
         while (_enemies.Contains(target))
         {
             GameObject gameObject = Instantiate(_ammunitionPrefab, _ammoSpawnpoint.position, Quaternion.identity);
-            gameObject.GetComponent<Arrow>().Target = target;
+            gameObject.GetComponent<Ammo>().Target = target;
             yield return new WaitForSeconds(_shootCooldown);
         }
     }
