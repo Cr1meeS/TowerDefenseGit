@@ -1,12 +1,17 @@
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     protected float speed;
 
+    [HideInInspector] public float Health;
+    private float _currentealh;
+
     public  delegate void OnDie();
+    public  delegate void OnHealthChanged(float currentHealth);
 
     public event OnDie OnDieEvent;
+    public event OnHealthChanged OnHealthChangedEvent;
 
     protected virtual void Awake()
     {
@@ -20,5 +25,11 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void OnDestroy() 
     {
         OnDieEvent?.Invoke();
+    }
+
+    protected void HealthChange(float currentHealth)
+    {
+        _currentealh = currentHealth;
+        OnHealthChangedEvent?.Invoke(currentHealth);
     }
 }

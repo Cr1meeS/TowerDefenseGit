@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Slime : Enemy, IDamagable
 {
-    [SerializeField] private float health;
+    [SerializeField] private float _health;
 
     public float Speed;
 
@@ -14,6 +14,7 @@ public class Slime : Enemy, IDamagable
             LevelData.Instance.EnemiesSpeed[this] = Speed;
         }
         speed = LevelData.Instance.EnemiesSpeed[this];
+        Health = _health;
     }
 
     private void Die()
@@ -23,9 +24,10 @@ public class Slime : Enemy, IDamagable
 
     public void GetDamage(float damage)
     {
-        health = health - damage;
+        _health = _health - damage;
 
-        if (health <= 0) Die();
+        HealthChange(_health);
+        if (_health <= 0) Die();
 
     } 
 }

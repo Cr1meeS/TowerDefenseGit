@@ -17,6 +17,7 @@ public class FireBall : Ammo
             transform.LookAt(Target);
             transform.position = Vector3.MoveTowards(transform.position, Target.position, _speed * Time.deltaTime);
         }
+        if (Target == null && _hit == false) Destroy(gameObject);
     }
 
     protected override void OnTriggerEnter(Collider collider)
